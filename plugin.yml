@@ -1,0 +1,17 @@
+name: KingOfBlock
+main: NoobMCBG\KingOfBlock\KingOfBlock
+api: 5.0.0
+version: 3.0.0
+author: NoobMCBG, ClickedTran
+description: Vua Của Các Khối
+virions: ["libRanks", "libPiggyEconomy"]
+
+permissions:
+  kingofblock.command:
+    default: true
+  kingofblock.command.use:
+    default: op
+  kingofblock.command.give:
+    default: op
+  kingofblock.command.take:
+    default: op
