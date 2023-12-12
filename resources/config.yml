@@ -1,0 +1,8 @@
+rank:
+ provider: pureperms
+
+economy:
+ provider: economyapi
+
+price-buy: 1000
+price-give: 1000
