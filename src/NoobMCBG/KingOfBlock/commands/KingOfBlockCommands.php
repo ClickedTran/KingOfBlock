@@ -92,7 +92,7 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 		            $time->set($player->getName(), $time->get($player->getName()) + $args[2]);
 		            $time->save();
 		            $sender->sendMessage("§9[§b KingOfBlock §9] §aYou gave §c" . $args[2] . " §aminute used for §b" . $player->getName());
-		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been credited §b" . $args[2] . " §aminutes of use!");
+		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been credited §c" . $args[2] . " §aminutes of use!");
 		            $ranks->setPlayerPermission($player, "kingofblock.command.use");
 		       }
 		     }
@@ -120,8 +120,8 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 		         if($time->get($player->getName()) >= $args[2]){
 		            $time->set($player->getName(), $time->get($player->getName()) - $args[2]);
 		            $time->save();
-		            $sender->sendMessage("§9[§b KingOfBlock §9] §aYou took §c" . $args[2] . " §amin usage of §b" . $player->getName());
-		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been deducted §b" . $args[2] . " §aminutes of use by §8".$sender->getName()."§a!");
+		            $sender->sendMessage("§9[§b KingOfBlock §9] §aYou took §c" . $args[2] . " §aminute usage of §b" . $player->getName());
+		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been deducted §c" . $args[2] . " §aminutes of use by §8".$sender->getName()."§a!");
 		         }else{
 		           $sender->sendMessage("§aThe time of §b" . $player->getName() . " §a is not enough to get!");
 		         }
