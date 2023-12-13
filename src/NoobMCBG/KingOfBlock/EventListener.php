@@ -9,7 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\item\StringToItemParser;
 use pocketmine\event\block\BlockBreakEvent;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\{PlayerJoinEvent, PlayerQuitEvent};
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\math\Vector3;
 use NoobMCBG\KingOfBlock\KingOfBlock;
@@ -71,4 +71,14 @@ class EventListener implements Listener {
          $mode->save();
       }
    }
+
+   public function onQuit(PlayerQuitEvent $event) : void
+   {
+     $player = $event->getPlayer();
+     $mode = $this->plugin->getMode();
+     if($mode->get($player->getName()) === "on"){
+	$mode->set($player->getName(), "off");
+	$mode->save();
+      }
+   }	
 }
