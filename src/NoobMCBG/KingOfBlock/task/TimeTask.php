@@ -9,6 +9,7 @@ use pocketmine\scheduler\Task;
 use NoobMCBG\KingOfBlock\KingOfBlock;
 
 class TimeTask extends Task {
+	public KingOfBlock $plugin;
 
 	public function __construct(KingOfBlock $plugin){
 		$this->plugin = $plugin;
