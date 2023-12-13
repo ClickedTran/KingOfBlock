@@ -30,13 +30,11 @@ class KingOfBlockCommands extends Command implements PluginOwned {
              $sender->sendMessage("§6======§bKINGOFBLOCK HELP§6======");
              if(Server::getInstance()->isOp($sender->getName())){    
 	        $sender->sendMessage("§b/kingofblock <give | take> <player> <time: minute>");
-                return;
 	     }
              if($time->exists($sender->getName())){
                 $sender->sendMessage("§b/kingofblock <on | off>");
-	     return;
 	     }
-             $sender->sendMessage("§6====================");
+             $sender->sendMessage("§6===========================");
 	  }else{
 	     switch($args[0]){
 		    case "on":
