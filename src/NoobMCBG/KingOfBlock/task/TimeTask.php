@@ -27,7 +27,7 @@ class TimeTask extends Task {
                        $mode->set($player, "off");
                        $mode->save();                  
 		       if($this->plugin->getServer()->getPlayerByPrefix($player) !== null){
-		          $this->plugin->getServer()->getPlayerByPrefix($player)->sendMessage("§9[§b KingOfBlock §9] §e Your usage period has ended!");
+		          $this->plugin->getServer()->getPlayerByPrefix($player)->sendMessage("§9[§b KINGOFBLOCK §9] §c Your usage period has ended!");
                           $ranks->unsetPlayerPermission($this->plugin->getServer()->getPlayerByPrefix($player), "kingofblock.command.use");
                           break;
                        }
@@ -35,7 +35,7 @@ class TimeTask extends Task {
                      continue;
 		  }
                   if($this->plugin->getServer()->getPlayerByPrefix($player) !== null){
-	             $this->plugin->getServer()->getPlayerByPrefix($player)->sendMessage("§9[§b KingOfBlock §9]§a Your remaining usage time is §8$time §aminutes !");
+	             $this->plugin->getServer()->getPlayerByPrefix($player)->sendMessage("§9[§b KINGOFBLOCK §9]§a Your remaining usage time is §c$time §aminutes !");
 		  }
 		  $all_time->set($player, $time - 1);
                   $all_time->save();
