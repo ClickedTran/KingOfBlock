@@ -18,7 +18,7 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 
 	public function __construct(KingOfBlock $plugin){
 		$this->plugin = $plugin;
-		parent::__construct("kingofblock", "open menu KingOfBlock", null, ["kob"]);
+		parent::__construct("kingofblock", "§7KingOfBlock Commands", null, ["kob"]);
 		$this->setPermission("kingofblock.command.use");
 	}
 
@@ -26,48 +26,50 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 	  $time = $this->plugin->getTime();
 	  $mode = $this->plugin->getMode();
 	  $ranks = $this->plugin->getRankProvider();
-		 if(!isset($args[0])){
-		   if(Server::getInstance()->isOp($sender->getName()) or $sender instanceof Player){
-		    $sender->sendMessage("§6======§bKINGOFBLOCK HELP§6======");
-		    $sender->sendMessage("§d/kingofblock <give | take> <player> <time: minute>");
-		    $sender->sendMessage("§6====================");
-		   }else{
-		    $sender->sendMessage("§d/kingofblock <on|off>");
-		    return;
-		   }
-		 }else{
-		   switch($args[0]){
+	  if(!isset($args[0])){
+             $sender->sendMessage("§6======§bKINGOFBLOCK HELP§6======");
+             if(Server::getInstance()->isOp($sender->getName())){    
+	        $sender->sendMessage("§b/kingofblock <give | take> <player> <time: minute>");
+                return;
+	     }
+             if($time->exists($sender->getName())){
+                $sender->sendMessage("§b/kingofblock <on | off>");
+	     return;
+	     }
+             $sender->sendMessage("§6====================");
+	  }else{
+	     switch($args[0]){
 		    case "on":
-		   	 if(!$sender instanceof Player){
+		    if(!$sender instanceof Player){
 		        $sender->sendMessage("Please use in-game, please!");
 		       return;
-	      	}else{
+	            }else{
 		       if(!$sender->hasPermission("kingofblock.command.use")){
 		         $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
 		       }else{
 		         if(empty($time->get($sender->getName()))){
-		           $sender->sendMessage("§cYour amount of time is not enough!");
+		           $sender->sendMessage("§9[ §bKINGOFBLOCK §9]§r§c Your data does not exist!");
 		         }else{
 		          $mode->set($sender->getName(), "on");
 		          $mode->save();
-		          $sender->sendMessage("§9[§b KingOfBlock §9] §aMode has been enabled!");
+		          $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aMode has been enabled!");
 		         }
 		       }
-	      	}
+		    }
 		    break;
 		    case "off":
 		     if(!$sender instanceof Player){
-	           $sender->sendMessage("Please use in-game, please!");
+	                $sender->sendMessage("Please use in-game, please!");
 		        return;
-	     	}else{
-	 	     if(!$sender->hasPermission("kingofblock.command.use")){
-		         $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
 		     }else{
-		        $mode->set($sender->getName(), "off");
-		        $mode->save();
-		        $sender->sendMessage("§9[§b KingOfBlock §9] §aMode has been disabled!");
+	 	       if(!$sender->hasPermission("kingofblock.command.use")){
+		           $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
+		       }else{
+		           $mode->set($sender->getName(), "off");
+		           $mode->save();
+		           $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aMode has been disabled!");
+		       }
 		     }
-	     	}
 		    break;
 		    case "give":
 		     if(!$sender->hasPermission("kingofblock.command.give")){
@@ -91,8 +93,8 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 		       }else{
 		            $time->set($player->getName(), $time->get($player->getName()) + $args[2]);
 		            $time->save();
-		            $sender->sendMessage("§9[§b KingOfBlock §9] §aYou gave §c" . $args[2] . " §aminute used for §b" . $player->getName());
-		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been credited §c" . $args[2] . " §aminutes of use!");
+		            $sender->sendMessage("§9[§b KINGOFBLOCK §9] §a You have give §b".$player->getName()."§c ".$args[2]."§a minutes of use");
+		            $player->sendMessage("§9[§b KINGOFBLOCK §9] §a You have received §c".$args[2]."§a minutes of usage from §b".$sender->getName());
 		            $ranks->setPlayerPermission($player, "kingofblock.command.use");
 		       }
 		     }
@@ -120,10 +122,10 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 		         if($time->get($player->getName()) >= $args[2]){
 		            $time->set($player->getName(), $time->get($player->getName()) - $args[2]);
 		            $time->save();
-		            $sender->sendMessage("§9[§b KingOfBlock §9] §aYou took §c" . $args[2] . " §aminute usage of §b" . $player->getName());
-		            $player->sendMessage("§9[§b KingOfBlock §9] §aYou have been deducted §c" . $args[2] . " §aminutes of use by §8".$sender->getName()."§a!");
+		            $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aYou took §c" . $args[2] . " §aminute usage of §b" . $player->getName());
+		            $player->sendMessage("§9[§b KINGOFBLOCK §9] §aYou have been deducted §c" . $args[2] . " §aminutes of use by staff §b".$sender->getName()."§a!");
 		         }else{
-		           $sender->sendMessage("§aThe time of §b" . $player->getName() . " §a is not enough to get!");
+		           $sender->sendMessage("§9[ §bKINGOFBLOCK§9]§r§c The usage time of §b" . $player->getName() . " §c is not enough to take!");
 		         }
 		       }
 		     }
