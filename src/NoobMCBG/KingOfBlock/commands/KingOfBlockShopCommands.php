@@ -157,3 +157,4 @@ class KingOfBlockShopCommands extends Command implements PluginOwned
         $form->addSlider("§aScroll to the number of minutes you want to give a gift",1,60,1);
         $player->sendForm($form);
     }
+}
