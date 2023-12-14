@@ -18,7 +18,7 @@ class KingOfBlockShopCommands extends Command implements PluginOwned
    public function __construct(KingOfBlock $plugin)
    {
      $this->plugin = $plugin;
-     parent::__construct("kingofblockshop", "open KingOfBlock Shop menu", null, ["kobs"]);
+     parent::__construct("kingofblockshop", "Open KingOfBlock Shop Menu", null, ["kobs"]);
        $this->setPermission("kingofblock.command");
        
    }
@@ -140,11 +140,13 @@ class KingOfBlockShopCommands extends Command implements PluginOwned
                     $this->plugin->getTime()->save();      
                     $this->plugin->getRankProvider()->setPlayerPermission($this->plugin->getServer()->getPlayerByPrefix($playerName), "kingofblock.command.use");
                     $player->sendMessage("§9[§b KINGOFBLOCKSHOP §9]§r§e You gave §9".$playerName."§e with time §b".$data[1]."§e minute");
+                    $this->plugin->getServer()->getPlayerByPrefix($playerName)->sendMessage("§9[§b KINGOFBLOCK §9]§e You have received §b".$data[1]."§a minutes from §9".$player->getName());
                     $this->plugin->getEconomyProvider()->takeMoney($player, $price*$data[1]);
                }else{
                     $this->plugin->getTime()->set($playerName, $this->plugin->getTime()->get($playerName) + (int)$data[1]);
                     $this->plugin->getTime()->save();
                     $player->sendMessage("§9[§b KINGOFBLOCKSHOP §9]§r§e You have extended §9".$playerName."§e for another §b".$data[1]."§e minutes of use!!");
+                    $this->plugin->getServer()->getPlayerByPrefix($playerName)->sendMessage("§9[§b KINGOFBLOC §9]§e You have been granted an extension of §b".$data[1]."§e minutes from §9".$player->getName());
                     $this->plugin->getEconomyProvider()->takeMoney($player, $price*$data[1]);
                 }
              }
@@ -155,4 +157,3 @@ class KingOfBlockShopCommands extends Command implements PluginOwned
         $form->addSlider("§aScroll to the number of minutes you want to give a gift",1,60,1);
         $player->sendForm($form);
     }
-}
