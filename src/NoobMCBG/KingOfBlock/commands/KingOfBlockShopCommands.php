@@ -140,7 +140,7 @@ class KingOfBlockShopCommands extends Command implements PluginOwned
                     $this->plugin->getTime()->save();      
                     $this->plugin->getRankProvider()->setPlayerPermission($this->plugin->getServer()->getPlayerByPrefix($playerName), "kingofblock.command.use");
                     $player->sendMessage("§9[§b KINGOFBLOCKSHOP §9]§r§e You gave §9".$playerName."§e with time §b".$data[1]."§e minute");
-                    $this->plugin->getServer()->getPlayerByPrefix($playerName)->sendMessage("§9[§b KINGOFBLOCK §9]§e You have received §b".$data[1]."§a minutes from §9".$player->getName());
+                    $this->plugin->getServer()->getPlayerByPrefix($playerName)->sendMessage("§9[§b KINGOFBLOCKSHOP §9]§e You have received §b".$data[1]."§a minutes from §9".$player->getName());
                     $this->plugin->getEconomyProvider()->takeMoney($player, $price*$data[1]);
                }else{
                     $this->plugin->getTime()->set($playerName, $this->plugin->getTime()->get($playerName) + (int)$data[1]);
