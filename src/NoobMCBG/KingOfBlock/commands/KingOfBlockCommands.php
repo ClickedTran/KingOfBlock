@@ -26,22 +26,22 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 	  $time = $this->plugin->getTime();
 	  $mode = $this->plugin->getMode();
 	  $ranks = $this->plugin->getRankProvider();
-	  if(!isset($args[0])){
-             $sender->sendMessage("§6======§bKINGOFBLOCK HELP§6======");
-             if(Server::getInstance()->isOp($sender->getName())){    
-	        $sender->sendMessage("§b/kingofblock <give | take> <player> <time: minute>");
-	     }
-             if($time->exists($sender->getName())){
-                $sender->sendMessage("§b/kingofblock <on | off>");
-	     }
-             $sender->sendMessage("§6===========================");
-	  }else{
-	     switch($args[0]){
+		 if(!isset($args[0])){
+           $sender->sendMessage("§6======§bKINGOFBLOCK HELP§6======");
+		   if(Server::getInstance()->isOp($sender->getName())){    
+		    $sender->sendMessage("§b/kingofblock <give | take> <player> <time: minute>");
+		   }
+           if($time->exists($sender->getName())){
+              $sender->sendMessage("§b/kingofblock <on | off>");
+		   }
+           $sender->sendMessage("§6====================");
+		 }else{
+		   switch($args[0]){
 		    case "on":
-		    if(!$sender instanceof Player){
+		   	 if(!$sender instanceof Player){
 		        $sender->sendMessage("Please use in-game, please!");
 		       return;
-	            }else{
+	      	}else{
 		       if(!$sender->hasPermission("kingofblock.command.use")){
 		         $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
 		       }else{
@@ -53,21 +53,21 @@ class KingOfBlockCommands extends Command implements PluginOwned {
 		          $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aMode has been enabled!");
 		         }
 		       }
-		    }
+	      	}
 		    break;
 		    case "off":
 		     if(!$sender instanceof Player){
-	                $sender->sendMessage("Please use in-game, please!");
+	           $sender->sendMessage("Please use in-game, please!");
 		        return;
+	     	}else{
+	 	     if(!$sender->hasPermission("kingofblock.command.use")){
+		         $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
 		     }else{
-	 	       if(!$sender->hasPermission("kingofblock.command.use")){
-		           $sender->sendMessage("§9[§4 ! §9] §cYou don't have permission to use command!");
-		       }else{
-		           $mode->set($sender->getName(), "off");
-		           $mode->save();
-		           $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aMode has been disabled!");
-		       }
+		        $mode->set($sender->getName(), "off");
+		        $mode->save();
+		        $sender->sendMessage("§9[§b KINGOFBLOCK §9] §aMode has been disabled!");
 		     }
+	     	}
 		    break;
 		    case "give":
 		     if(!$sender->hasPermission("kingofblock.command.give")){
